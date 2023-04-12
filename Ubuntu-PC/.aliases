@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Show memory usage
+alias mem="df -H"
+
