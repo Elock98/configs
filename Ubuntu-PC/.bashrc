@@ -63,7 +63,7 @@ git_branch() {
 
 if [ "$color_prompt" = yes ]; then
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1='\e[1;93m╭──[\e[1;94m\u@\h\e[1;93m]─[\e[1;36m\D{%d.%m.%Y} \t\e[1;93m]─[\e[1;96m\w\e[1;93m]\n\e[1;93m╰──>\e[1;92m$(git_branch)\e[1;93m \$ \e[0m'
+    PS1='\e[1;93m╭──[\e[1;94m\D{%d.%m.%Y} \t\e[1;93m]─[\e[1;36m\u@\h\e[1;93m]─[\e[1;96m\w\e[1;93m]\n\e[1;93m╰──>\e[1;92m$(git_branch)\e[1;93m \$ \e[0m'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
