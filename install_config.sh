@@ -5,7 +5,17 @@
 config=0
 backup=0
 user=""
+verbose=false
 
+# Option parsing
+
+while getopts v option
+do
+    case "${option}"
+        in
+            v)verbose=true;;
+    esac
+done
 
 # Utility functions
 
@@ -98,6 +108,7 @@ echo "Installation settings:"
 echo "  Selected configuration: $config"
 echo "  Will backup existing configuration files: $backup"
 echo "  Install configurations for user: $user"
+echo "  Verbose output: $verbose"
 
 echo ""
 confirm "Do you wish to proceed? [y/n]"
