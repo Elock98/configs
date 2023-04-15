@@ -118,3 +118,7 @@ then
     exit 4
 fi
 
+
+# Run the specific config install
+
+$config/install.sh $user $backup $verbose
