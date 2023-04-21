@@ -1,0 +1,58 @@
+#!/bin/bash
+
+
+function find_man_full {
+    manpages=$(zgrep -l "$pattern" /usr/share/man/man1/* | awk -F '/' '/1/ {print $6}' | sed 's/.1.gz//g')
+    man -f $manpages | sed 's/([0-9])/       /g'
+
+    exit 0
+}
+
+function find_man_desc {
+    man -k "$pattern" | sed 's/([0-9])/       /g'
+    exit 0
+}
+
+function random_man {
+    man $(find /usr/share/man/man1 -type f | shuf | head -1)
+    exit 0
+}
+
+function print_help {
+    echo "getMan - Get a random man page or search for man pages"
+    echo
+    echo "Syntax: getMan [-f <pattern>|F <pattern>|r|h]"
+    echo "options:"
+    echo "f <pattern>   Search for <pattern> in man pages name and description and prints matches"
+    echo "F <pattern>   Search for <pattern> in man pages and prints matches"
+    echo "h             Prints this help message"
+    echo "r             Opens a random man page"
+    echo
+    case $1 in
+        "0")
+            exit 0
+            ;;
+        "1")
+            exit 1
+            ;;
+    esac
+}
+
+
+while getopts f:F:rh option
+do
+    case "${option}"
+    in
+        f)
+            pattern=${OPTARG}
+            find_man_desc $pattern;;
+        F)
+            pattern=${OPTARG}
+            find_man_full $pattern;;
+        r) random_man;;
+        h) print_help 0;;
+    esac
+
+done
+
+print_help $1
